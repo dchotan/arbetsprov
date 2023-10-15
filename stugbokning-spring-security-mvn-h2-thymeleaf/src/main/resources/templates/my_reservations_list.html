@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Stugbokningssystem</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+	<!-- create navigation bar (header) -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+					aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">Stugbokningssystem</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logga ut</a></li>
+					<li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/admin/reservationsList}">Bokningar</a></li>
+					<li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/admin/viewCabinListPage}">Visa alla
+							stugor</a></li>
+					<li sec:authorize="hasAuthority('USER')"><a th:href="@{/reservation/myReservationsList}">Mina bokningar</a></li>
+				</ul>
+				<ul class="nav navbar-nav pull-right">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/}">Vällkommen 
+						<span sec:authentication="principal.username"></span>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<br>
+	<br>
+	<section class="pt-2 pb-2">
+		<div class="container">
+			<div class="row w-100">
+				<div class="col-lg-12 col-md-12 col-12">
+					<h3 class="display-5 mb-2 text-center">Stugbokningssystem</h3>
+
+					<table id="stugolist" class="table table-condensed table-responsive">
+						<thead>
+							<tr>
+								<th style="width:30%">Stugor</th>
+								<th style="width:10%">Typ av stuga</th>
+								<th style="width:10%">Gäster</th>
+								<th style="width:10%">Parkering</th>
+								<th style="width:14%">Pris/natt</th>
+								<th style="width:26%">Datum</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="reservation : ${reservationsList}">
+								<td data-th="Title">
+									<div class="row">
+										<div class="col-md-3 text-left">
+											<img th:src="${reservation.image}" alt="Responsive image"
+												class="img-fluid d-none d-md-block rounded mb-2 img-responsive shadow ">
+										</div>
+										<div class="col-md-9 text-left mt-sm-2">
+											<h4 th:text="${reservation.title}"></h4>
+											<p class="font-weight-light" th:text="${reservation.address}"></p>
+										</div>
+									</div>
+								</td>
+								<td th:text="${reservation.cabinType}"></td>
+								<td th:text="${reservation.numberOfGuests}"></td>
+								<td th:text="${reservation.parking} ? 'Ja' : 'Nej'"></td>
+								<td th:text="${reservation.price}"></td>
+								<td>
+									<p><label>Från: </label><span th:text="${#dates.format(reservation.fromDateTime, 'yyyy-MM-dd')}"></span></p>
+									<p><label>Till: </label><span th:text="${#dates.format(reservation.endDateTime, 'yyyy-MM-dd')}"></span></p>
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+
+			<hr>
+			<a th:href="@{/}">Tillbaka</a>
+		</div>
+	</section>
+
+</body>
+
+</html>
