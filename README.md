@@ -11,8 +11,6 @@
     * [Registrering](#registrering)
 	* [Logga in](#logga-in)
 	* [Övriga sidor](#övriga-sidor)
-* [API](#api)
-    * [End Points](#end-points)
     
 
 ## User Story
@@ -76,23 +74,73 @@ Det finns ett pre-defined admin konto:
 
 	Användarnamn: admin@mail.com
 	Lösenord: admin
+	
+Här använder vi Spring Boot Security för att hantera användare och roll. Vi har två roller ADMIN och USER.
+	
+![alt text](pics/adminlogin.png)
 
 ### Registrering
 
+Användare kan registrera sitt konto via "Registrera här" länken (http://localhost:8080/registration)
+
+![alt text](pics/registrera-1.png)
+
+och få en bekräftelse på att "Registrerad!" efter trycker på "Registrera" knappen.
+
+![alt text](pics/registrera-2.png)
+
 ### Logga in
+
+Användare kan gå till inloggningssidan (http://localhost:8080/login) via länken "Logga in här" och kan logga in genom att ange sin e-postadress och sitt lösenord.
+
+![alt text](pics/registrera-3.png)
 
 ### Övriga sidor
 
-## API
+Det finns några stugor eller hus i databasen.
 
-### End Points
+#### Som USER
 
+Användare kan boka och se sina bokningar.
 
+![alt text](pics/user-1.png)
 
+Bokning formulär
 
-Method	| URL	| JSON Object (Example)	| Description	| Parameters | Returns| User Authentication | Available for UI
-------- | ----- | ------------- |:-------------:|:----------:|:-------:|:-------:|:-------:|
-POST|http://localhost:8080/ads-service/add-new-ad| [JSON](#add-new-ads) | Add a new ad to the ads service  | | | Yes | Yes|
-GET|http://localhost:8080/ads-service/get-all-ads| | Get all the ads from the ads service   |  | All [JSON](#get-all-ads) data from ads DB| Yes | |
+![alt text](pics/user-2.png)
 
+Användare får en bekräftelse på att stugan är bokad.
+
+![alt text](pics/user-3.png)
+
+På mina bokningar kan användare se sina bokningar.
+
+![alt text](pics/user-4.png)
+
+#### Som ADMIN
+
+Admin kan:
+1. Skapa en ny stuga
+2. Redigera stugor
+3. Ta bort stugor
+
+![alt text](pics/admin-1.png)
+
+Skapa en ny stuga.
+
+![alt text](pics/admin-2.png)
+
+Stuga formulär
+
+![alt text](pics/admin-3.png)
+
+Redigera en stuga.
+
+![alt text](pics/admin-4.png)
+
+![alt text](pics/admin-5.png)
+
+ADMIN kan se alla bokningar av stugor.
+
+![alt text](pics/admin-6.png)
 
