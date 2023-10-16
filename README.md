@@ -26,7 +26,7 @@
 ### Om Applikationen
 Här i applikationen har jag använt-
 1. IDE: Spring Tool Suite 
-2. In mmory databas: H2 
+2. In memory databas: H2 
 3. Backend: Java 
 4. Frontend: Thymeleaf
 
@@ -42,9 +42,6 @@ $ mvn spring-boot:run
 Eller kör programmet som Spring Boot App
 
 ![alt text](pics/sba.png)
-
-
-[Stugbokningssystem](#stugbokningssystem)
 
 ## Databas
 
@@ -63,8 +60,6 @@ Viktig uppgifter:
 #### Efter anslutningsdatabas
 
 ![alt text](pics/h2-console-2.png)
-
-[Stugbokningssystem](#stugbokningssystem)
 
 ## Web
 
